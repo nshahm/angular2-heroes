@@ -1,8 +1,8 @@
 import {Component} from 'angular2/core';
 import {OnInit} from 'angular2/core';
-import {Hero} from './hero';
-import {HeroDetailComponent} from './hero-detail.component'
-import {HeroService} from './hero.service'
+import {Hero} from './model/hero';
+import {HeroDetailComponent} from './displaydata/hero-detail.component'
+import {HeroService} from './service/hero.service'
 
 
 @Component({
@@ -10,6 +10,9 @@ import {HeroService} from './hero.service'
     template: `
     <div>
         <h1>{{title}}</h1>
+            <button (click) = "onClickEventTriggered()">Click here</button>
+            
+            <label *ngIf="message != undefined">{{message}}</label>
             <ul class="heroes">
                     <li *ngFor="#her of heroes" 
                         (click)="selectHero(her)"
@@ -44,6 +47,7 @@ import {HeroService} from './hero.service'
 export class AppComponent implements OnInit { 
     
     public title = 'My angular first tour with hero functionalities';
+    public message = '';
     // public hero = 'More';
     
     // public heroObj : Hero = {
@@ -67,6 +71,10 @@ export class AppComponent implements OnInit {
         this.selectedHero = hero;
     } 
     
+    
+    onClickEventTriggered() {
+        this.message = 'My click event triggered';
+    }
     getHeroes() {
         
         this._heroService.getHeroes().then(heroes => this.heroes = heroes); 
