@@ -3,16 +3,13 @@ import {OnInit} from 'angular2/core';
 import {Hero} from './model/hero';
 import {HeroDetailComponent} from './displaydata/hero-detail.component'
 import {HeroService} from './service/hero.service'
-
+import {HerosInput} from './input/heros-input';
 
 @Component({
     selector: 'heros-app',
     template: `
     <div>
         <h1>{{title}}</h1>
-            <button (click) = "onClickEventTriggered()">Click here</button>
-            
-            <label *ngIf="message != undefined">{{message}}</label>
             <ul class="heroes">
                     <li *ngFor="#her of heroes" 
                         (click)="selectHero(her)"
@@ -70,11 +67,7 @@ export class AppComponent implements OnInit {
     selectHero(hero : Hero) {
         this.selectedHero = hero;
     } 
-    
-    
-    onClickEventTriggered() {
-        this.message = 'My click event triggered';
-    }
+ 
     getHeroes() {
         
         this._heroService.getHeroes().then(heroes => this.heroes = heroes); 
