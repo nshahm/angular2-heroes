@@ -8,6 +8,8 @@
     <script src="node_modules/systemjs/dist/system.src.js"></script>
     <script src="node_modules/rxjs/bundles/Rx.js"></script>
     <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
+    <!-- included to support es5 supported browsers -->
+    <script src="node_modules/es6-shim/es6-shim.js"></script>
     
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="app/styles/heros-style-default.css">
@@ -30,9 +32,9 @@
   <!-- 3. Display the application -->
   <body>
     <!--heros-app>Loading...</heros-app-->
-    <BR/>
     <!--heros-input>Loading hero input..</heros-input-->
-    <heros-forms-app>Loading hero forms app</heros-forms-app>
+    <!--heros-forms-app>Loading hero forms app</heros-forms-app-->
+    <heros-di-app>Loading hero dependency injection... </heros-di-app>
   </body>
 
 </html>
