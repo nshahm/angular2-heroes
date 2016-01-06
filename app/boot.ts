@@ -6,11 +6,18 @@ import { HeroesDIComponent } from './dependencyinjection/heros-di.component';
 import { HeroService } from './service/hero.service';
 import { Logger } from './logger/Logger';
 import { Provider, provide } from 'angular2/core';
+import { HeroServiceFactory } from './service/hero.service.factory';
+import { LoggerConfig } from './logger/logger.config';
 
 // bootstrap(AppComponent);
 // bootstrap(HerosInput);
 // bootstrap(HeroFormAppComponent);
 
+
+/*
+
+Dependency Injection varios options of inject.
+*/
 
 // EXCEPTION: No provider for Logger! (HeroesDIComponent -> HeroService -> Logger)
 // If not initializing global instance this will work.
@@ -21,8 +28,18 @@ import { Provider, provide } from 'angular2/core';
 
 //bootstrap(HeroesDIComponent, [Logger]);
 // Do this in couple of other ways
+// useClass with provide() method
 //      bootstrap(HeroesDIComponent, [ provide(Logger, { useClass:Logger}) ]);
 
-     bootstrap(HeroesDIComponent, [ new Provider(Logger, { useClass:Logger}) ]); // useValue option will be used for testcase mostly.
+// useClass with new Provider()
+//      bootstrap(HeroesDIComponent, [ new Provider(Logger, { useClass:Logger}) ]); // useValue option will be used for testcase mostly.
+
+// useFactory
+
+bootstrap(HeroesDIComponent, [provide(HeroService, 
+                                        { useFactory : HeroServiceFactory,
+                                             deps:[Logger, LoggerConfig]
+                                        }
+                                      ), Logger, LoggerConfig]);     
      
 
